@@ -1,9 +1,14 @@
 # TkSheet Client for `bulk-chain`
+![](https://img.shields.io/badge/Python-3.9-brightgreen.svg)
+[![PyPI bulk-chain downloads](https://img.shields.io/pypi/dm/bulk-chain.svg)](https://pypistats.org/packages/bulk-chain)
+
+> **Update 16/05/2025:** We support `batch-stream-async` output in `bulk-chain-1.1.0` 🔥
+
 <p align="center">
   <a href="https://github.com/nicolay-r/bulk-chain"><b>bulk-chain</b>↗️</a>
 </p>
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/5bc8cddc-6d22-41ec-80f9-9df433f2d566" width="300" height="auto"/>
+  <img src="https://github.com/user-attachments/assets/81e62b7b-a3cf-42ce-88cd-d648ffdf3b41" width="900" height="auto"/>
 </p>
 
 > This project illustrates embedding of a no-string framework `bulk-chain` for reasoning over your data using predefined scheme. 
@@ -15,9 +20,24 @@ It supports streamed output for filling table content.
 pip install -r dependencies.txt
 ```
 
-## API
+## Usage
 
 Please take a look at the [**related Wiki page**](https://github.com/nicolay-r/bulk-chain/wiki)
+
+```python
+data_it = iter_content(
+  input_dicts_it=islice(iter_test_jsonl_samples("data/sample.jsonl"), sheet.total_rows()),
+  llm=llm,
+  return_batch=False,
+  batch_size=5,
+  infer_mode="batch_stream_async",  # <- async stream batching mode.
+  return_mode="chunk",              # <- return chunks.
+  schema="data/thor_cot_schema.json"
+)
+
+for ind, col, chunk in data_it:
+    callback(chunk=chunk, row=ind, col=col, sheet=sheet)
+```
 
 
 # Embed your LLM
