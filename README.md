@@ -27,12 +27,13 @@ Please take a look at the [**related Wiki page**](https://github.com/nicolay-r/b
 
 ```python
 data_it = iter_content(
-  input_dicts_it=islice(iter_test_jsonl_samples("data/sample.jsonl"), sheet.total_rows()),
+  input_dicts_it=iter_test_jsonl_samples("data/sample.jsonl"),
   llm=llm,
   return_batch=False,
   batch_size=5,
   infer_mode="batch_stream_async",  # <- async stream batching mode.
   return_mode="chunk",              # <- return chunks.
+  event_loop=asyncio.get_event_loop_policy().get_event_loop(),
   schema="data/thor_cot_schema.json"
 )
 
