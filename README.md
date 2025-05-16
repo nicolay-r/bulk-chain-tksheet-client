@@ -5,7 +5,8 @@
 > **Update 16/05/2025:** We support `batch-stream-async` output in `bulk-chain-1.1.0` 🔥
 
 <p align="center">
-  <a href="https://github.com/nicolay-r/bulk-chain"><b>bulk-chain</b>↗️</a>
+  <a href="https://github.com/nicolay-r/bulk-chain"><b>bulk-chain</b> ↗️</a> /
+  <a href="https://github.com/nicolay-r/nlp-thirdgate"><b>LLM providers 🌌</b>
 </p>
 <p align="center">
   <img src="https://github.com/user-attachments/assets/81e62b7b-a3cf-42ce-88cd-d648ffdf3b41" width="900" height="auto"/>
@@ -46,7 +47,7 @@ All you have to do is to implement `BaseLM` class, that includes:
 * `__init__` -- for setting up *batching mode support* and (optional) *model name*;
 * `ask(prompt)` -- infer your model with the given `prompt`.
 
-See examples with models [at nlp-thirdgate 🌌](https://github.com/nicolay-r/nlp-thirdgate?tab=readme-ov-file#llm).
+See examples with models [at nlp-thirdgate 🌌](https://github.com/nicolay-r/nlp-thirdgate).
 
 
 # Dependencies
