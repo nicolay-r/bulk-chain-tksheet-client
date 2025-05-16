@@ -7,18 +7,18 @@ from tksheet import Sheet
 
 from utils import iter_test_jsonl_samples
 
+COLUMNS = [
+    "r_aspect",
+    "r_opinion",
+    "r_polarity",
+    "r_label"
+]
+
 
 def callback(chunk, col, row, sheet):
 
-    cols_to_ind = [
-        "r_aspect",
-        "r_opinion",
-        "r_polarity",
-        "r_label"
-    ]
-
     # Update cell data.
-    c =cols_to_ind.index(col)
+    c =COLUMNS.index(col)
     new_cell_data = sheet.get_cell_data(r=row, c=c) + chunk
     sheet.set_cell_data(r=row, c=c, value=new_cell_data, redraw=True)
 
@@ -63,7 +63,7 @@ def main():
     root.grid_rowconfigure(0, weight=1)
     root.grid_columnconfigure(0, weight=1)
 
-    sheet = Sheet(root, total_rows=25, total_columns=4)
+    sheet = Sheet(root, total_rows=25, total_columns=len(COLUMNS))
     sheet.grid(row=0, column=0, sticky="nsew")
     
     sheet.set_column_widths([500, 300, 300, 150])
