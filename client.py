@@ -58,7 +58,6 @@ def on_fill_button_click(sheet):
                            schema="data/thor_cot_schema.json")
 
     for ind, col, chunk in data_it:
-        print(ind, col, chunk)
         callback(chunk=chunk, row=ind, col=col, sheet=sheet)
 
     sheet.redraw()
@@ -86,8 +85,10 @@ def main():
 
 
 if __name__ == "__main__":
+    API_TOKEN = None
+    assert API_TOKEN is not None, "You have to setup API token first!"
     llm = dynamic_init(class_filepath="replicate_104.py",
-                       class_name="Replicate")(api_token=None,
+                       class_name="Replicate")(api_token=API_TOKEN,
                                                model_name="meta/meta-llama-3-70b-instruct",
                                                stream=True)
     main()
